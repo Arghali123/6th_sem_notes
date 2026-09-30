@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FirstProject</string>
+    <string name="home_page">Home Page</string>
+    <string name="home_button">Click me</string>
+    <string-array name="spinner_selection">
+        <item>1st sem</item>
+        <item>2st sem</item>
+        <item>3st sem</item>
+        <item>4st sem</item>
+    </string-array>
+</resources>

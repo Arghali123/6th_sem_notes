@@ -1,0 +1,14 @@
+3. explain fileinput stream,input stream,buffered reader and inputstreamreader with its uses.
+4. count the number of status code in log.txt file 
+
+// LAb4: Program to display network interfaces
+
+//Lab 5: Program to list assigned ip addresses of netwrok interface
+
+//Assignment:
+/*
+
+1.Explain inetaddress why inetaddress is used in  networking.List out differnt methods provides by
+ java inetadderess class.
+2. same to network interface.
+ */

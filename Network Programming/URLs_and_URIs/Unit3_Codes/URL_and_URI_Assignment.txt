@@ -1,0 +1,3 @@
+lab 8: WAP to extract URL components.
+lab 9: Program to read data from URL using openConnection().
+

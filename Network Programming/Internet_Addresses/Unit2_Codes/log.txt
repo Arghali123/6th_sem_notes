@@ -1,0 +1,6 @@
+192.168.10.1 GET index.html HTTPS 200
+192.168.10.1 GET index.html HTTPS 404
+192.168.10.1 GET index.html HTTPS 401
+192.168.10.2 GET home.html HTTPS 200
+192.168.10.3 GET login.html HTTPS 404
+192.168.10.4 POST login.html HTTPS 500

@@ -1,0 +1,10 @@
+  Events            Listerner
+1.ActionEvent       ActionListener(Buttons)
+2.ItemEvent         ItemListener(List items)
+3.WindowEvent       WindowListener
+4.KeyEvent          KeyListener
+5.MouseEvent        MouseListener
+
+Assingment
+1. find x and y coordinate where mouse cursor is present.
+
