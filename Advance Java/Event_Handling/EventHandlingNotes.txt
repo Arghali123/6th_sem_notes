@@ -1,10 +1,13 @@
-  Events            Listerner
-1.ActionEvent       ActionListener(Buttons)
-2.ItemEvent         ItemListener(List items)
-3.WindowEvent       WindowListener
-4.KeyEvent          KeyListener
-5.MouseEvent        MouseListener
+  Events            Listerner                     Adaptor Classes 
+1.ActionEvent       ActionListener(Buttons)       ActionAdaptor
+2.ItemEvent         ItemListener(List items)      MouseAdaptor
+3.WindowEvent       WindowListener                WindowAdaptor
+4.KeyEvent          KeyListener                   KeyAdaptor
+5.MouseEvent        MouseListener                 MouseAdaptor
+
+Adaptor Classs: problem in event listerner's like applying all the methods is resolved in adaptor class.
 
 Assingment
 1. find x and y coordinate where mouse cursor is present.
+
 

@@ -8,4 +8,10 @@
         <item>3st sem</item>
         <item>4st sem</item>
     </string-array>
+
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="login_no_account">Didn\'t have a account?</string>
+    <string name="login_image_description">Cover image</string>
 </resources>
