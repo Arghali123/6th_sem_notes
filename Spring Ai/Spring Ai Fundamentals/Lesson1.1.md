@@ -1,37 +1,4 @@
-## 🟢 Phase 1 — Spring AI Fundamentals
 
-We'll cover these in order:
-
-**1.1** What is Spring AI?
-**1.2** Spring AI Architecture
-**1.3** AI Models & Providers
-**1.4** Setting up a Spring AI project
-**1.5** `ChatClient`
-**1.6** Prompts
-**1.7** Prompt Templates
-**1.8** Chat Model Configuration
-**1.9** Handling AI Responses
-**1.10** Streaming Responses
-**1.11** Mini Project — AI Chat REST API
-
-Since you already have good Spring Boot experience, **I won't waste time teaching Spring Boot basics again.** We'll focus on what's new in Spring AI.
-
-### 🎯 How we'll study
-
-For each topic I'll give you:
-
-* **Concept** — what it is
-* **Why it matters**
-* **How it works**
-* **Spring AI implementation**
-* **Complete runnable code**
-* **Simple example**
-* **Important points**
-* **Small practice task**
-
-And after completing a group of topics, we'll do a **quick revision**, just like we've done with your other study topics.
-
----
 
 # 🚀 Let's start: 1.1 What is Spring AI?
 

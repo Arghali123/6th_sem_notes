@@ -1,44 +1,72 @@
 # 🟢 1.4 — Setting Up Your First Spring AI Project
-## 1. What We're Going to Build
 
-Our first application will be very simple:
+Great. For our roadmap, we'll use **Google Gemini through the Gemini Developer API**, using the **Free Tier** for learning.
 
-```text
-User
- ↓
-Spring Boot REST API
- ↓
-Spring AI
- ↓
-AI Model
- ↓
-AI Response
- ↓
-User
-```
+The current Spring AI documentation uses the `spring-ai-starter-model-google-genai` starter for this integration. ([Home][1])
 
-We'll expose:
-
-```text
-GET /ai?message=Explain Java inheritance
-```
-
-and receive an AI-generated response.
+> **Important:** API keys are secrets. Never paste your real key into chat, GitHub, screenshots, or your `application.properties` if that file will be committed to Git.
 
 ---
 
-# 2. Create the Spring Boot Project
+# Part A — Get Your Gemini API Key 🔑
 
-Go to **Spring Initializr** and create a normal Maven Spring Boot project.
+Google currently provides Gemini API keys through **Google AI Studio**. New users can have a project and API key created automatically; otherwise, you can create one from the API Keys page. ([Google AI for Developers][2])
 
-Select:
+### Step 1 — Open Google AI Studio
+
+[Open Google AI Studio](https://aistudio.google.com/?utm_source=chatgpt.com)
+
+Sign in with your Google account.
+
+### Step 2 — Go to API Keys
+
+In AI Studio, open the **API Keys** section.
+
+Google's current documentation says that new users may automatically get a project and API key, while existing users can create a new key through **Create API key**. ([Google AI for Developers][2])
+
+### Step 3 — Create the key
+
+Click:
+
+**Create API key**
+
+If you're asked to select a project, create/select a project for this Spring AI learning project.
+
+You'll receive something resembling:
 
 ```text
-Project: Maven
-Language: Java
-Packaging: Jar
-Java: 17+
+AIzaSy................................
 ```
+
+**Do not share the actual value.**
+
+### Step 4 — Keep it on the Free Tier
+
+For our learning project, **do not set up billing yet**.
+
+Google currently has a Free Tier for the Gemini API with access to certain models subject to their free-tier limits. Higher tiers require billing. ([Google AI for Developers][3])
+
+You can monitor your usage and limits from Google AI Studio. ([Google AI for Developers][3])
+
+---
+
+# Part B — Create the Spring Boot Project
+
+Go to:
+
+[Spring Initializr](https://start.spring.io/?utm_source=chatgpt.com)
+
+Use:
+
+```text
+Project:       Maven
+Language:      Java
+Spring Boot:   Current stable version
+Packaging:     Jar
+Java:          17 or newer
+```
+
+### Dependencies
 
 Add:
 
@@ -46,124 +74,108 @@ Add:
 Spring Web
 ```
 
-For Spring AI, add the appropriate **Spring AI model starter** for the provider/model you intend to use.
+and the Spring AI Google GenAI dependency.
 
-For example, if you're learning with OpenAI, the dependency is the Spring AI OpenAI starter for your selected Spring AI release.
-
-Your project will roughly look like:
-
-```text
-spring-ai-demo/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com.example.demo/
-│   │   │       └── DemoApplication.java
-│   │   └── resources/
-│   │       └── application.properties
-│   └── test/
-└── pom.xml
-```
-
----
-
-# 3. Add the Spring AI Dependency
-
-For a Maven project, Spring AI dependencies are managed through the Spring AI BOM, which keeps compatible Spring AI module versions aligned.
-
-Conceptually:
+Current Spring AI documentation lists:
 
 ```xml
-<dependencyManagement>
-    ...
-    spring-ai-bom
-    ...
-</dependencyManagement>
+<dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-starter-model-google-genai</artifactId>
+</dependency>
 ```
 
-Then you add the provider starter you need.
+as the Google GenAI starter. ([Home][1])
 
-For example, the OpenAI integration uses the Spring AI OpenAI Spring Boot starter.
+### Your `pom.xml`
 
-**Don't blindly copy a version from an old tutorial.** Spring AI has evolved quickly, so use the version shown by the current Spring Initializr/Spring AI documentation for your project.
+If you're creating the project from scratch, the important dependency section looks like:
+
+```xml
+<dependencies>
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.ai</groupId>
+        <artifactId>spring-ai-starter-model-google-genai</artifactId>
+    </dependency>
+
+</dependencies>
+```
+
+Spring AI's current documentation is on the **2.0.x** line, which supports Spring Boot 4.x. ([Home][4])
+
+So if you're following an older tutorial that tells you to use a different Gemini starter/artifact, **don't blindly copy it**. Spring AI's Google integration has changed over time.
 
 ---
 
-# 4. Configure Your API Key
+# Part C — Configure Gemini
 
-If you're using a cloud provider, you generally need an API key.
-
-For example:
-
-```properties
-spring.ai.openai.api-key=${OPENAI_API_KEY}
-```
-
-Then define the environment variable:
+Now open:
 
 ```text
-OPENAI_API_KEY=your-api-key
+src/main/resources/application.properties
 ```
 
-### ⚠️ Important
+We need to tell Spring AI:
 
-Don't do this:
+1. What API key to use
+2. Which Gemini model to use
 
-```properties
-spring.ai.openai.api-key=sk-your-real-key
-```
-
-and then upload the project to GitHub.
-
-Instead:
+The current configuration uses:
 
 ```text
-Environment Variable
-        ↓
-Spring Boot
-        ↓
-Spring AI
-        ↓
-AI Provider
+spring.ai.google.genai.api-key
+spring.ai.google.genai.chat.model
 ```
 
-This keeps your secret outside the source code.
+according to the Spring AI documentation. ([Home][1])
+
+### ❌ Don't do this
+
+```properties
+spring.ai.google.genai.api-key=AIzaSyYourRealKey
+```
+
+if `application.properties` is going into Git.
+
+Instead, use an environment variable.
+
+### Windows
+
+Set an environment variable:
+
+```text
+GOOGLE_API_KEY=YOUR_API_KEY
+```
+
+Then configure:
+
+```properties
+spring.ai.google.genai.api-key=${GOOGLE_API_KEY}
+spring.ai.google.genai.chat.model=gemini-2.5-flash
+```
+
+The current Spring AI documentation lists `gemini-2.5-flash` among supported Google GenAI chat models. ([Home][1])
 
 ---
 
-# 5. Create a ChatClient
+# Part D — Create Our First AI Controller
 
-Now we get to one of the most important Spring AI concepts.
+Now we'll make a very small REST API.
 
-We'll eventually use:
+Create:
 
-```java
-ChatClient
+```text
+src/main/java/com/example/demo/controller/ChatController.java
 ```
 
-A simple Spring configuration can create it from the available chat model:
-
 ```java
-@Configuration
-public class AIConfig {
-
-    @Bean
-    public ChatClient chatClient(ChatModel chatModel) {
-        return ChatClient.create(chatModel);
-    }
-}
-```
-
-Now Spring can inject `ChatClient` into your services/controllers.
-
----
-
-# 6. Create the REST Controller
-
-Here's our **complete runnable example**:
-
-```java
-package com.example.demo;
+package com.example.demo.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -171,16 +183,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AIController {
+public class ChatController {
 
     private final ChatClient chatClient;
 
-    public AIController(ChatClient chatClient) {
-        this.chatClient = chatClient;
+    public ChatController(ChatClient.Builder chatClientBuilder) {
+        this.chatClient = chatClientBuilder.build();
     }
 
-    @GetMapping("/ai")
-    public String askAI(@RequestParam String message) {
+    @GetMapping("/ai/chat")
+    public String chat(
+            @RequestParam String message) {
 
         return chatClient
                 .prompt(message)
@@ -190,215 +203,203 @@ public class AIController {
 }
 ```
 
-Now you can send:
+### What's happening here?
 
-```text
-GET /ai?message=What is polymorphism in Java?
-```
-
-and the application sends the prompt to the configured AI model.
-
----
-
-# 7. What's Happening Here?
-
-Let's break this down:
-
-### Step 1
-
-Spring injects our `ChatClient`:
+This line:
 
 ```java
 private final ChatClient chatClient;
 ```
 
-### Step 2
+creates our Spring AI client.
 
-We give it a prompt:
-
-```java
-chatClient.prompt(message)
-```
-
-### Step 3
-
-We execute the request:
+Then:
 
 ```java
-.call()
+this.chatClient = chatClientBuilder.build();
 ```
 
-### Step 4
+creates the `ChatClient`.
 
-We extract the generated text:
-
-```java
-.content()
-```
-
-So:
-
-```text
-chatClient
-     ↓
-.prompt(message)
-     ↓
-.call()
-     ↓
-.content()
-     ↓
-String response
-```
-
-This tiny chain is something you'll see **again and again** throughout Spring AI.
-
----
-
-# 8. Complete Project Structure
-
-A clean beginner project could look like:
-
-```text
-src/main/java/com/example/demo/
-│
-├── DemoApplication.java
-├── AIConfig.java
-└── AIController.java
-```
-
-### `DemoApplication.java`
-
-```java
-package com.example.demo;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class DemoApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-    }
-}
-```
-
-### `AIConfig.java`
-
-```java
-package com.example.demo;
-
-import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-public class AIConfig {
-
-    @Bean
-    public ChatClient chatClient(ChatModel chatModel) {
-        return ChatClient.create(chatModel);
-    }
-}
-```
-
-### `AIController.java`
-
-```java
-package com.example.demo;
-
-import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class AIController {
-
-    private final ChatClient chatClient;
-
-    public AIController(ChatClient chatClient) {
-        this.chatClient = chatClient;
-    }
-
-    @GetMapping("/ai")
-    public String askAI(@RequestParam String message) {
-
-        return chatClient
-                .prompt(message)
-                .call()
-                .content();
-    }
-}
-```
-
----
-
-# 9. Request Flow
-
-When you call:
-
-```text
-http://localhost:8080/ai?message=Explain%20inheritance
-```
-
-the flow is:
-
-```text
-Browser/Postman
-      ↓
-GET /ai
-      ↓
-AIController
-      ↓
-ChatClient
-      ↓
-ChatModel
-      ↓
-AI Provider
-      ↓
-AI Model
-      ↓
-Response
-      ↓
-ChatClient
-      ↓
-AIController
-      ↓
-Browser/Postman
-```
-
-🔥 **This is the architecture we learned in 1.2 now working in real code.**
-
----
-
-# 10. One Important Thing Before Moving On
-
-There are **two things you should understand before we continue**:
-
-### `ChatModel`
-
-Represents the underlying model integration.
-
-```java
-ChatModel
-```
-
-### `ChatClient`
-
-Provides the convenient API that your application uses:
+And:
 
 ```java
 chatClient
-    .prompt(...)
+    .prompt(message)
     .call()
     .content();
 ```
 
-We'll explore `ChatClient` properly in **1.5**.
+means:
+
+```text
+User message
+     ↓
+  ChatClient
+     ↓
+ Gemini
+     ↓
+ AI response
+     ↓
+ String
+```
+
+We'll study every part of this properly in **1.5 — ChatClient**. For now, we're just getting the application running.
 
 ---
 
+# Part E — Run the Application
+
+Start your Spring Boot application.
+
+You should see something similar to:
+
+```text
+Started DemoApplication
+```
+
+Then open:
+
+```text
+http://localhost:8080/ai/chat?message=Explain%20Java%20interfaces
+```
+
+Your application sends:
+
+```text
+Explain Java interfaces
+```
+
+to Gemini.
+
+Gemini generates the answer.
+
+Spring AI returns it to your browser.
+
+---
+
+# 🧠 Understand the Complete Flow
+
+You've now created this:
+
+```text
+                 USER
+                   │
+                   │
+                   ▼
+        ┌───────────────────┐
+        │   Spring Boot     │
+        │   REST Controller  │
+        └─────────┬─────────┘
+                  │
+                  ▼
+        ┌───────────────────┐
+        │    ChatClient     │
+        └─────────┬─────────┘
+                  │
+                  ▼
+        ┌───────────────────┐
+        │    Spring AI      │
+        │   Google GenAI    │
+        └─────────┬─────────┘
+                  │
+                  ▼
+        ┌───────────────────┐
+        │   Gemini Model    │
+        └─────────┬─────────┘
+                  │
+                  ▼
+               RESPONSE
+```
+
+🎉 **This is your first real Spring AI application.**
+
+---
+
+# 🔐 One Important Security Practice
+
+For your project, keep:
+
+```text
+application.properties
+```
+
+free of the actual secret.
+
+For example:
+
+```properties
+spring.ai.google.genai.api-key=${GOOGLE_API_KEY}
+```
+
+Then keep the actual key in your environment.
+
+Also add sensitive local configuration to `.gitignore` if applicable.
+
+**Never upload this:**
+
+```text
+GOOGLE_API_KEY=AIzaSy...
+```
+
+to GitHub.
+
+Google specifically documents API-key security and currently recommends securing keys; new AI Studio keys are created as auth keys, while unrestricted older standard keys may need restrictions. ([Google AI for Developers][5])
+
+---
+
+# ⚠️ About the Gemini Free Tier
+
+One thing to understand before we continue:
+
+**Free doesn't mean unlimited.**
+
+Google's Free Tier has model-specific rate/usage limits. The exact limits can change, so don't rely on old tutorials claiming a particular number of requests per minute/day. Check the current limits in AI Studio when needed. ([Google AI for Developers][3])
+
+For **learning Spring AI**, though, the free tier is a very practical starting point.
+
+---
+
+# 🧪 Your First Practice
+
+Before we move to `ChatClient`, make sure you can get this working:
+
+```text
+GET /ai/chat?message=What is Spring AI?
+```
+
+Then try:
+
+```text
+GET /ai/chat?message=Explain dependency injection in Spring Boot
+```
+
+And:
+
+```text
+GET /ai/chat?message=Give me 5 Java interview questions
+```
+
+Notice something important:
+
+**We haven't learned prompt engineering yet.**
+
+We're simply sending a string to the model.
+
+That's intentional.
+
+In the next topic, **1.5 — `ChatClient`**, we'll properly understand this:
+
+```java
+chatClient
+    .prompt()
+    .user(...)
+    .call()
+    .content();
+```
+
+and learn how `ChatClient` actually works.
+
+---
 
 
