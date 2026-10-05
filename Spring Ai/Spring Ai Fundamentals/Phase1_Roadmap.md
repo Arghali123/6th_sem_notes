@@ -10,7 +10,7 @@ We'll cover these in order:
 - [**1.6** Prompts](Lesson1.6.md)
 - [**1.7** Prompt Templates](Lesson1.7.md)
 - [**1.8** Chat Model Configuration](Lesson1.8.md)
-- **1.9** Handling AI Responses
-- **1.10** Streaming Responses
-- **1.11** Mini Project — AI Chat REST API
+- [**1.9** Handling AI Responses](Lesson1.9.md)
+- [**1.10** Streaming Responses](Lesson1.10)
+- [**1.11** Mini Project — AI Chat REST API](Lesson1.11.md)
 
