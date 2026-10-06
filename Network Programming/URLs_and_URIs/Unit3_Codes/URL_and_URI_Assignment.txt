@@ -2,3 +2,10 @@ lab 8: WAP to extract URL components.
 lab 9: Program to read data from URL using openConnection().
 lab 10: Program to get specific MIME header fieds and arbitary fields.
 lab 11: Facebook and youtube na chalna google chalna banau using http proxy.
+lab 12: Program to resolve utility URI.
+Lab 13: Program to implement URI utility methods.
+
+
+Assignment
+1. WAP to achieve URL encode and URL decode.
+
