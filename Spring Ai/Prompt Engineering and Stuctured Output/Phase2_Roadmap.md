@@ -12,10 +12,11 @@
 - [**2.8 Why Structured Output?**](Lesson2.8.md)
 - [**2.9 Java DTOs / Records for AI Output**](Lesson2.9.md)
 - [**2.10 Spring AI `.entity()`**](Lesson2.10.md)
-- 2.11 Structured Output with Lists and Generic Types
-- 2.12 Structured Output Validation
-- 2.13 Provider-Native Structured Output
-- 2.14 Structured Output + Prompt Engineering- 2.15 Mini Project — AI Student Evaluator
+- [**2.11 Structured Output with Lists and Generic Types**](Lesson2.11.md)
+- [**2.12 Structured Output Validation**](Lesson2.12.md)
+- [**2.13 Provider-Native Structured Output**](Lesson2.13.md)
+- [**2.14 Structured Output + Prompt Engineering**](Lesson2.14.md)
+- [**2.15 Mini Project — AI Student Evaluator**](Lesson2.15.md)
 - 2.16 Phase 2 Revision
 
 # Phase 2 Completion Criteria

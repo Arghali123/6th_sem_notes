@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:text="@string/login_no_account"
-        android:textColor="green"
+        android:textColor="red"
         app:layout_constraintEnd_toEndOf="@+id/loginBtn"
         app:layout_constraintStart_toStartOf="@+id/loginBtn"
         app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
