@@ -1,0 +1,13 @@
+## Phase 3 roadmap
+- [**3.1 Understanding Conversation Memory**](Lesson3.1.md)
+- [**3.2 Understanding Messages and Chat History**](Lesson3.2.md)
+- [**3.3 Types of Conversation Memory**](Lesson3.3.md)
+- [**3.4 Introduction to ChatMemory**](Lesson3.4.md)
+- [**3.5 Implementing Memory with MessageChatMemoryAdvisor**](Lesson3.5.md)
+- [**3.6 Using ChatMemory with ChatClient**](Lesson3.6.md)
+- 3.7 Managing Multiple Conversations and Conversation IDs
+- 3.8 In-Memory vs Persistent Chat Memory
+- 3.9 Database-Backed Conversation History
+- 3.10 Memory Limits and Context Management
+- 3.11 Conversation Memory Security
+- 3.12 Mini Project — Memory-Enabled Career Assistant
