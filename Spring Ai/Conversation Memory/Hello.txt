@@ -1,17 +1,10 @@
-from the first exchange we can get the context from which we can ge the idea idea of what conversation had been made 
-and skip it or continue from it.This saves time and maintain the correct flow of the conversation.
+1. Why is a conversation ID not enough to authorize access to chat history?
 
-False,MessageChatMemoryAdvisor makes Gemini permanently remember the student, even after the application restarts
-because in-memory storage is temporary,memory has limits.
+2. Student B changes a conversation ID in a request to access Student A's messages. What must the backend check?
 
-ChatMemory.CONVERSATION_ID on each memory-enabled call because it helps to identify the conversation and helps to reuse or 
-continue the conversation.This can save a lot of time of users and make conversation effective.
+3. Why can a stored conversation message containing malicious instructions still be dangerous when retrieved later?
 
-We pass ChatMemory.CONVERSATION_ID through the advisor parameters to  tracking the conversation of a user so that they donot
-overlap with others conversation.
+4. Name two ways to protect sensitive conversation data in a Spring Boot application.
 
-if two requests use the same conversation ID then second request can include the context of first request and send the request and
-continue the conversation without need of extra guidance of previous chats to the ai model.
 
-A developer uses one fixed conversation ID for every student. It can create conversation overlap of users.To avoid it we must use 
-conversation id.
+5. Should Gemini decide whether a student owns a conversation, or should the backend enforce that rule? Explain why.
