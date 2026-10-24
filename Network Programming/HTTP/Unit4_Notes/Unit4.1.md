@@ -6,10 +6,10 @@ Java Network Programming · Unit 4
 
 HTTP is an application-layer protocol used by clients and servers to exchange resources and data over a network.
 
-- 4.1 — The protocol: Keep-Alive
-- 4.2 — HTTP methods
-- 4.3 — The request body
-- 4.4 — Cookies: CookieManager and CookieStore
+- **4.1 — The protocol: Keep-Alive**
+- [**4.2 — HTTP methods**](Unit4.2.md)
+- [**4.3 — The request body**](Unit4.3.md)
+- [**4.4 — Cookies: CookieManager and CookieStore**](Unit4.4.md)
 
 
 ## Topic 4.1 — The HTTP Protocol: Keep-Alive
