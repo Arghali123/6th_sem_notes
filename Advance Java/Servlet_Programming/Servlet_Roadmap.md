@@ -6,3 +6,5 @@
 - [**Lesson 11.4: Environment Setup for Servlets**](Servlet_Lesson11.4.md)
 - [**Lesson 11.5: Servlet Life Cycle**](Servlet_Lesson11.5.md)
 - [**Lesson 11.6: Servlet APIs**](Servlet_Lesson11.6.md)
+- [**Lesson 11.7 — Processing HTML Form Data Using Servlets**](Servlet_Lesson11.7.md)
+- [**Lesson 11.8 — Reading All Form Parameters**](Servlet_Lesson11.8.md)

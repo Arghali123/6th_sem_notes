@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read All Form Parameters</title>
+</head>
+<body>
+    <h2>Student Registration</h2>
+
+    <form action="read-all-parameters" method="post">
+        <label>Student Name:</label>
+        <input type="text" name="studentName" required>
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <br><br>
+
+        <label>Course:</label>
+        <select name="course">
+            <option value="Java">Java</option>
+            <option value="React">React</option>
+            <option value="PostgreSQL">PostgreSQL</option>
+        </select>
+        <br><br>
+
+        <p>Select your skills:</p>
+        <label>
+            <input type="checkbox" name="skills" value="Java">
+            Java
+        </label>
+        <label>
+            <input type="checkbox" name="skills" value="SQL">
+            SQL
+        </label>
+        <label>
+            <input type="checkbox" name="skills" value="React">
+            React
+        </label>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

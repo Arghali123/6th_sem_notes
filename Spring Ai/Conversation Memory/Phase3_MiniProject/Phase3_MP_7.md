@@ -871,11 +871,199 @@ In IntelliJ IDEA:
 3. If compilation succeeds, run your Spring Boot application.
 4. Confirm the application starts and connects to PostgreSQL.
 
+//Stage 5
+existing conversation ownership checks.
+# Stage 5 — Postman authentication and security tests
+
+## 5.1 Register Alice
+
+In Postman, create a request with these settings:
+
+POST
+
+`http://localhost:8080/api/auth/register`
+
+Authorization tab: select No Auth. Body tab: select raw → JSON.
+
+```
+{
+  "username": "alice",
+  "password": "Alice-Dev-2026!"
+}
+```
+
+Expected status: `201 Created`
+
+The response should resemble this structure:
+
+```
+{
+  "accessToken": "eyJ...",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+```
+
+The token shown above is only an example prefix, not a real token.
+
+Important: Save Alice's actual `accessToken` in a private Postman environment variable such as `aliceToken`. Never share the real token or commit it to Git.
+
+If Alice already exists from an earlier test, don't delete the database record. A `409 Conflict` is expected for duplicate registration; continue by logging in.
+
+
+## Stage 5.2 — Register a second user, Bob
+
+We need a second account to test conversation isolation and ownership security later. Alice and Bob must not be able to access each other's conversations.
+
+### 1. Send the Postman request
+
+POST
+
+`http://localhost:8080/api/auth/register`
+
+&#x20;Copy URL
+
+Authorization: No Auth
+
+Body → raw → JSON
+
+```
+{
+  "username": "bob",
+  "password": "Bob-Dev-2026!"
+}
+```
+
+Use these credentials only in your local learning environment. Don't share any returned token.
+
+### 2. Check the response
+
+- `201 Created` — Bob was registered. Confirm the response contains `accessToken`, save it privately as `bobToken` in Postman, and verify Bob's database record.
+- `409 Conflict` — Bob already exists. That's okay; don't delete the record. We'll log in as Bob instead.
+- Any other status — Stop and report the status and error message so we can troubleshoot before proceeding.
 
 
 
+## Stage 5.3 — Login as Alice
+
+This test is especially important because it verifies that Spring Security can retrieve Alice from PostgreSQL, validate her BCrypt-hashed password, and authenticate her through `DatabaseUserDetailsService`.
+
+### 1. Configure the Postman request
+
+POST
+
+`http://localhost:8080/api/auth/login`
+
+&#x20;Copy URL
+
+Authorization: No Auth
+
+Body → raw → JSON
+
+```
+{
+  "username": "alice",
+  "password": "Alice-Dev-2026!"
+}
+```
+
+Expected result: `200 OK`, with a response containing an `accessToken`, `tokenType` set to `"Bearer"`, and `expiresIn` set to `3600`.
+
+### 2. Verify the response
+
+- If you receive `200 OK`, confirm that `accessToken` is present. Save the newly returned login token privately as `aliceToken` in Postman.
+- If you receive `401 Unauthorized`, don't change your security configuration yet. Report the status and error response so we can investigate.
+- If you receive another status, report that exact result.
+
+
+##  Stage 5.4: Reject unauthenticated requests
+
+Goal: Prove that a client cannot create a conversation without presenting a valid JWT.
+
+### 1. Configure Postman
+
+POST
+
+`http://localhost:8080/api/conversations`
+
+&#x20;Copy URL
+
+Authorization tab: Select No Auth.
+
+Body: Select none. No request body is needed.
+
+Click Send.
+
+### 2. Check the actual response
+
+The expected result is `401 Unauthorized` because this endpoint requires authentication and you deliberately supplied no token.
+
+- `401 Unauthorized` — expected security behavior.
+- `200 OK` or `201 Created` — unexpected; the request may have bypassed authentication.
+- Any other status — report the exact status so we can investigate.
 
 
 
+## Stage 5.5B: Create Bob's conversation
 
+Goal: Create a separate conversation authenticated as Bob. Later, we'll test whether Alice and Bob are prevented from accessing each other's conversations.
+
+### 1. Configure Postman
+
+POST
+
+`http://localhost:8080/api/conversations`
+
+&#x20;Copy URL
+
+Authorization tab
+
+- Type: Bearer Token
+- Token: `{{bobToken}}`
+
+Body: Select none.
+
+Important: Use Bob's token, not Alice's. Keep both tokens private.
+
+### 2. Send the request
+
+Expected: `200 OK`, with a response exposing a new conversation ID.
+
+If the request succeeds, save the returned ID as `bobConversationId` in Postman. Make sure it is Bob's new ID, not Alice's existing ID.
+
+If you receive any other status, report the actual result instead of assuming the test passed.
+
+
+## Final test 1 — Verify conversation ownership
+
+Goal: Confirm Bob cannot read Alice's conversation.
+
+In Postman, send:
+
+GET
+
+`http://localhost:8080/api/conversations/{{aliceConversationId}}/messages`
+
+Authorization: Bearer Token → `{{bobToken}}`
+
+Body: None
+
+Expected: `403 Forbidden`
+
+Why? Your backend must verify that the authenticated username owns the requested conversation before returning its messages. Knowing a conversation ID is not permission to access it.
+
+
+## Final test 2 — Reject an invalid JWT
+
+In Postman, send:
+
+- Method: `GET`
+- URL: `http://localhost:8080/api/conversations/{{aliceConversationId}}/messages`
+- Authorization: Bearer Token
+- Token: Enter a deliberately modified copy of Alice's token (for example, change its final character). Do not modify your saved `aliceToken` environment variable.
+- Body: None
+
+Expected result: `401 Unauthorized`.
+
+This checks that Spring Security rejects a token that fails JWT validation before the request can access the conversation.
 
