@@ -11,3 +11,5 @@
 - [**Lesson 11.9: Reading Initialization Parameters**](Servlet_Lesson11.9.md)
 - [**Lesson 11.10 — Cookies in Servlet**](Servlet_Lesson11.10.md)
 - [**Lesson 11.11 — Session Tracking in Servlets**](Servlet_Lesson11.11.md)
+- [**Lesson 11.12 — Database Access with Servlets (JDBC + PostgreSQL)**](Servlet_Lesson11.12.md)
+- [**Lesson 11.13 — Request Dispatcher**](Servlet_Lesson11.13.md)

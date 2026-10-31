@@ -458,7 +458,7 @@ This is one of the most important comparisons in Servlet Programming.
 |Have cookie expiration rules|	Have inactivity timeout and lifecycle rules|
 |Created using Cookie|	Accessed using HttpSession|
 
->> Remember: A session often uses a cookie to identify the session, but the session data itself is maintained by the server.
+> Remember: A session often uses a cookie to identify the session, but the session data itself is maintained by the server.
 
 
 ### 8. How this fits into our React + Java + PostgreSQL application
