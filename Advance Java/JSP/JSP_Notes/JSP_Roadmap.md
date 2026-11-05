@@ -4,10 +4,10 @@
 | ------ | ----------------------------------- |
 | 12.1   | [**Basics of Java Server Pages**](JSP_Lesson12.1.md)         |
 | 12.2   | [**JSP Syntax**](JSP_Lesson12.2.md)                          |
-| 12.3   | JSP Implicit Objects                |
-| 12.4   | Scope of JSP Objects                |
-| 12.5   | Form Processing in JSP              |
-| 12.6   | Database Access with JSP            |
+| 12.3   | [**JSP Implicit Objects**](JSP_Lesson12.3.md)                |
+| 12.4   | [**Scope of JSP Objects**](JSP_Lesson12.4.md)                |
+| 12.5   | [**Form Processing in JSP**](JSP_Lesson12.5.md)              |
+| 12.6   | [**Database Access with JSP**](JSP_Lesson12.6.md)            |
 | 12.7   | Exception Handling in JSP           |
 | 12.8   | JSP Session Tracking                |
 | 12.9   | Introduction to Java Web Frameworks |
