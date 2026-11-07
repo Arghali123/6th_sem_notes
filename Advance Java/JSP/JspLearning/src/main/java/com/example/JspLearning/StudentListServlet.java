@@ -34,7 +34,8 @@ public class StudentListServlet extends HttpServlet {
             request.getRequestDispatcher("/students.jsp").forward(request,response);
         }catch (SQLException exception)
         {
-            throw new ServletException("Unable to retrieve students from the database.",exception);
+            getServletContext().log("Unable to retrieve students from the database",exception);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

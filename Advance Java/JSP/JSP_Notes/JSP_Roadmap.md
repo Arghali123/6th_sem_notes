@@ -8,10 +8,10 @@
 | 12.4   | [**Scope of JSP Objects**](JSP_Lesson12.4.md)                |
 | 12.5   | [**Form Processing in JSP**](JSP_Lesson12.5.md)              |
 | 12.6   | [**Database Access with JSP**](JSP_Lesson12.6.md)            |
-| 12.7   | Exception Handling in JSP           |
-| 12.8   | JSP Session Tracking                |
-| 12.9   | Introduction to Java Web Frameworks |
-| 12.10  | JavaBeans in JSP                    |
+| 12.7   | [**Exception Handling in JSP**](JSP_Lesson12.7.md)           |
+| 12.8   | [**JSP Session Tracking **](JSP_Lesson12.8.md)               |
+| 12.9   | [**Introduction to Java Web Frameworks**](JSP_Lesson12.9.md) |
+| 12.10  | [**JavaBeans in JSP**](JSP_Lesson12.10.md)                    |
 
 ### Our development environment
 
