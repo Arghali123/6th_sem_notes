@@ -5,7 +5,7 @@
 Fields**](Unit5.3.md)
 - [**5.4 Cache: Web Cache for Java**](Unit5.4.md)
 - [**5.5 Configuring the Connection: protected URL url, protected boolean connected, protected boolean allow UserInteraction, protected boolean dolnput, protected boolean doOutput, protected boolean ifModificationSince, protected boolean useCaches and Timeouts**](Unit5.5.md)
-- 5.6 Configuring the Client Request HTTP Header
-- 5.7 Security Considerations for URLConnections
-- 5.8 Guessing MIME Media Types
-- 5.9 HttpURLConnection: The Request Methods, Disconnecting from the Server, Handling Server Responses, Proxies and Streaming Mode
+- [**5.6 Configuring the Client Request HTTP Header**](Unit5.6.md)
+- [**5.7 Security Considerations for URLConnections**](Unit5.7.md)
+- [**5.8 Guessing MIME Media Types**](Unit5.8.md)
+- [**5.9 HttpURLConnection: The Request Methods, Disconnecting from the Server, Handling Server Responses, Proxies and Streaming Mode**](Unit5.9.md)
