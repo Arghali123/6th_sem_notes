@@ -19,6 +19,7 @@ You might want to know:
 - Is the socket connected?
 - Is the socket closed?
 - Is the connection using TCP?
+
 Java provides several methods in the `Socket` class to retrieve this information.
 
 ### 2. Why do we need socket information?
@@ -31,14 +32,16 @@ When a user connects to your server, you may want to:
 4. Check whether the connection was established.
 5. Check whether the socket has been closed.
 6. Display connection information in an administration dashboard.
+
 These details are useful for network monitoring, troubleshooting, debugging and connection management.
 
 ### 3. Important Socket information methods
 Let's examine the most useful methods individually.
 #### A. `getInetAddress()`
 Returns the IP address of the remote server to which the socket is connected.
+```
 System.out.println(socket.getInetAddress());
-
+```
 
 Example output:
 ```

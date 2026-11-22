@@ -163,6 +163,7 @@ It provides methods to:
 - Retrieve connection information.
 - Configure socket options.
 - Close connections.
+
 The socket class is not itself an HTTP client. It provides lower-level TCP communication, and your application implements the protocol carried over that connection. 
 
 ### 7. Important methods of the Socket class
@@ -249,6 +250,7 @@ But what if we want to:
 - Select a particular local address.
 - Set socket options.
 - Choose a connection timeout.
+
 Java allows us to create a socket without establishing a connection.
 
 We use:
@@ -279,6 +281,7 @@ You may want to:
 3. Bind it to a particular local address.
 4. Connect to the database server.
 5. Exchange data.
+
 This gives you more control over the connection process.
 
 ### 11. Complete Java example: Unconnected Socket

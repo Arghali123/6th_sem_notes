@@ -48,6 +48,7 @@ System.out.println(socket.getTcpNoDelay());
 - Interactive applications.
 - Real-time messaging.
 - Applications that send frequent, small messages.
+
 Be aware: disabling Nagle's algorithm can increase the number of packets. It does not guarantee that every write becomes a separate network packet.
 
 #### B. `SO_LINGER` — Control socket closing behavior
@@ -156,6 +157,7 @@ System.out.println(socket.getKeepAlive());
 - Long-lived client-server connections.
 - Applications that maintain persistent TCP connections.
 - Detecting certain broken or unreachable connections.
+
 Important: TCP keep-alive is not an application-level heartbeat. The operating system controls probe timing, and defaults can be quite long. If your application needs quick detection, implement its own heartbeat protocol.
 
 #### G. `SO_REUSEADDR` — Reuse local address

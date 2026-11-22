@@ -104,6 +104,7 @@ socket.getInputStream();
 This method returns an InputStream that reads bytes from the connected server. 
 
 The communication process:
+
 <img src="../Unit6_Images/Unit6.2_Fig1.PNG" alt="Unit 6.2 Fig 1"/>
 
 

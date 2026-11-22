@@ -28,10 +28,13 @@ If you perform that work directly on Swing's Event Dispatch Thread (EDT), the GU
 
 The solution is to run network operations on a **background thread**, then update Swing components on the EDT.
 <img src="../Unit6_Images/Unit6.6_Fig2.PNG" alt="Unit6.6 Fig2">
-**Key rule:** Perform lengthy network operations in the background. Create and update Swing components on the EDT. Oracle's Swing concurrency guidance explains this separation. 
+
+**Key rule:** 
+Perform lengthy network operations in the background. Create and update Swing components on the EDT. Oracle's Swing concurrency guidance explains this separation. 
 
 ## 2. Understanding WHOIS
 <img src="../Unit6_Images/Unit6.6_Fig3.PNG" alt="Unit6.6 Fig3"/>
+
 **WHOIS** is a TCP-based, text request/response protocol traditionally used to retrieve registration information about domain names, IP addresses, and network resources.
 
 For example, a WHOIS query may return information such as:
