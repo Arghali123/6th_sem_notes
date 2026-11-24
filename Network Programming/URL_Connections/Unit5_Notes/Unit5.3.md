@@ -47,9 +47,7 @@ For example:
 | `Cache-Control`  | Instructions for caching            |
 | `Last-Modified`  | When the resource was last modified |
 
-[Getting Started with cURL - DEV Community](https://images.openai.com/static-rsc-4/ErEFnUjYkXoo31q4t2m0GM2B8D-oeXYAAbCKMvt75x-k_41mTMa1FBYwIxpf8gTSN6aJ3Kd_L5sBEpPBe6qD1zSWY87LZkIzT02XO9b7LksVFBN69S5Jko19TrHHIQt2vl57K24gQaY3N3mKUoMlTIZ3qjFMVqOAQ_NPvUdV87c?purpose=inline)
 
-[dev.to](https://dev.to/debashis_das_4deca65ec224/getting-started-with-curl-11n9?utm_source=chatgpt.com)
 
 Our goal: Learn how Java retrieves these headers using `URLConnection`.
 
